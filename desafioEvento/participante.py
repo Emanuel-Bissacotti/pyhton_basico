@@ -5,4 +5,4 @@ class Participante:
       self.email = email
       
    def __str__(self):
-      return (self.matricula + ' '+ self.nome + " " + self.email)
+      return f"Nome: {self.nome}, Email: {self.email}, Matricula: {self.matricula}"

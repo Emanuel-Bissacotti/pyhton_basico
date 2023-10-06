@@ -1,19 +1,34 @@
 from participante import *
 import datetime
+
 class Arquivo:
     def adiciona_lista(participante):
-        arquivo = open('inscricoes.dat', 'a')
-        arquivo.write(participante.matricula+';'+participante.nome+';'+participante.email+'\n')
-        arquivo.close()
+        with open("inscricoes.dat", "a") as arquivo:
+            arquivo.write(participante.matricula+';'+participante.nome+';'+participante.email+'\n')
         
-    def pegar_arquivo(Lista):
-        leitor = open('inscricoes.dat', 'r')
-        for linha in leitor:
-            v = linha.split(';')
-            p = Participante(v[0], v[1], v[2])
-            Lista.append(p)
-        return Lista
+    def pegar_arquivo(lista):
+        with open('inscricoes.dat', 'r') as arquivo:
+            for linha in arquivo:
+                v = linha.split(';')
+                p = Participante(v[0], v[1], v[2])
+                lista.append(p)
+        return lista
     
     def grava_entrada(matricula):
-        arquivo = open('entrada.dat', 'a')
-        arquivo.write(matricula+'--'+datetime.time)
+        with open('entrada.dat', 'a') as arquivo:
+            data = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            arquivo.write(matricula+';'+data+'\n')
+
+
+    def pegar_entradas():
+        entradas = []
+        with open("entrada.dat", "r") as arquivo:
+            for linha in arquivo:
+                v = linha.split(';')
+                entradas.append(v[0])
+        return entradas
+
+    def grava_saida(matricula):
+        with open("saida.dat", "a") as arquivo:
+            data = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            arquivo.write(matricula+'--'+data)

@@ -1,8 +1,8 @@
-from menu import *
+from menu import Menu
 from arquivo import *
 
-Lista = []
-Lista = Arquivo.pegar_arquivo(Lista)
+lista = []
+lista = Arquivo.pegar_arquivo(lista)
 
 while(True):
-    menu(Lista)
+    Menu.menu(lista)
