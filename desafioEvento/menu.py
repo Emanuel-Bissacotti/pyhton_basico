@@ -37,13 +37,14 @@ class Menu:
         email = input('Email: ')
         p = Participante(matricula, nome, email)
 
-        if p in lista:
-            print ('Participante ja insccrito')
-        else:
-            lista.append(p)
-            Arquivo.adiciona_lista(p)
-            print('Inscricao feita com sucesso')
-            
+        for p in lista:
+            if p.matricula == matricula:
+                print ('Participante ja inscrito')
+                return
+        lista.append(p)
+        Arquivo.adiciona_lista(p)
+        print('Inscricao feita com sucesso')
+        
     def inscritos(lista):
         for participante in lista:
             print(str(participante))
